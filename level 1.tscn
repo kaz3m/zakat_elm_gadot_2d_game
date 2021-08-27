@@ -1,0 +1,314 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://zakat_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://mohite_bazi_level_1.tres" type="TileSet" id=2]
+[ext_resource path="res://zakat_player.gd" type="Script" id=3]
+[ext_resource path="res://sahte_ghabele_oboor.tres" type="TileSet" id=4]
+[ext_resource path="res://background_blue.png" type="Texture" id=5]
+[ext_resource path="res://bg-over-1.png" type="Texture" id=6]
+[ext_resource path="res://bg-over-2.png" type="Texture" id=7]
+[ext_resource path="res://almas_node.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/mohit/bush3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/mohit/tree.png" type="Texture" id=10]
+[ext_resource path="res://Assets/mohit/towerSmallAlt.png" type="Texture" id=11]
+[ext_resource path="res://Assets/almas/platformPack_item010.png" type="Texture" id=12]
+[ext_resource path="res://Assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://panel_namayesh.gd" type="Script" id=14]
+[ext_resource path="res://ghoroor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://forsatha.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/audio/main_game.wav" type="AudioStream" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 94.3618, 20.3906 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 160.804, 20.5447 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2430.05, 38.2622 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 36
+font_data = ExtResource( 13 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "level_background_music"
+length = 60.0
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 17 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="level_1" type="Node2D"]
+
+[node name="zakat_player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 184.286, 41.7586 )
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="zakat_player"]
+current = true
+limit_left = 0
+limit_bottom = 900
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="zakat_player/Camera2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="zakat_player/Camera2D/ParallaxBackground"]
+motion_mirroring = Vector2( 1280, 1280 )
+
+[node name="Sprite" type="Sprite" parent="zakat_player/Camera2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="zakat_player/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 1.2, 1.2 )
+motion_mirroring = Vector2( 1280, 1280 )
+
+[node name="Sprite" type="Sprite" parent="zakat_player/Camera2D/ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="zakat_player/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 1.5, 1.5 )
+motion_mirroring = Vector2( 1280, 1280 )
+
+[node name="Sprite" type="Sprite" parent="zakat_player/Camera2D/ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource( 7 )
+centered = false
+
+[node name="zende_shodan" type="Timer" parent="zakat_player"]
+
+[node name="sathe_zamin" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+show_collision = true
+collision_layer = 4
+collision_mask = 9
+format = 1
+tile_data = PoolIntArray( -262129, 3, 0, -262128, 3, 0, -262127, 3, 0, -262126, 3, 0, -65537, 2, 0, -131062, 3, 0, -131061, 3, 0, -131060, 3, 0, -1, 2, 0, -65515, 3, 0, -65514, 3, 0, -65513, 3, 0, -65512, 3, 0, 65535, 2, 0, 131071, 2, 0, 196607, 2, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 262143, 2, 0, 327679, 2, 0, 262157, 3, 0, 262158, 3, 0, 262159, 3, 0, 262160, 3, 0, 262161, 3, 0, 393215, 2, 0, 458751, 2, 0, 393237, 0, 0, 393238, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 0, 0, 393245, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0, 393256, 0, 0, 393257, 0, 0, 393258, 0, 0, 393259, 0, 0, 524287, 2, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458773, 1, 0, 458774, 1, 0, 458775, 1, 0, 458776, 1, 0, 458777, 1, 0, 458778, 1, 0, 458779, 1, 0, 458780, 1, 0, 458781, 1, 0, 458782, 1, 0, 458783, 1, 0, 458784, 1, 0, 458785, 1, 0, 458786, 1, 0, 458787, 1, 0, 458788, 1, 0, 458789, 1, 0, 458790, 1, 0, 458791, 1, 0, 458792, 1, 0, 458793, 1, 0, 458794, 1, 0, 458795, 1, 0, 589823, 2, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524309, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 524318, 1, 0, 524319, 1, 0, 524320, 1, 0, 524321, 1, 0, 524322, 1, 0, 524323, 1, 0, 524324, 1, 0, 524325, 1, 0, 524326, 1, 0, 524327, 1, 0, 524328, 1, 0, 524329, 1, 0, 524330, 1, 0, 524331, 1, 0, 655359, 2, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589845, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589852, 1, 0, 589853, 1, 0, 589854, 1, 0, 589855, 1, 0, 589856, 1, 0, 589857, 1, 0, 589858, 1, 0, 589859, 1, 0, 589860, 1, 0, 589861, 1, 0, 589862, 1, 0, 589863, 1, 0, 589864, 1, 0, 589865, 1, 0, 589866, 1, 0, 589867, 1, 0, 720895, 2, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655381, 1, 0, 655382, 1, 0, 655383, 1, 0, 655384, 1, 0, 655385, 1, 0, 655386, 1, 0, 655387, 1, 0, 655388, 1, 0, 655389, 1, 0, 655390, 1, 0, 655391, 1, 0, 655392, 1, 0, 655393, 1, 0, 655394, 1, 0, 655395, 1, 0, 655396, 1, 0, 655397, 1, 0, 655398, 1, 0, 655399, 1, 0, 655400, 1, 0, 655401, 1, 0, 655402, 1, 0, 655403, 1, 0, 786431, 1, 0, 720896, 1, 0, 720897, 1, 0, 720898, 1, 0, 720899, 1, 0, 720900, 1, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720917, 1, 0, 720918, 1, 0, 720919, 1, 0, 720920, 1, 0, 720921, 1, 0, 720922, 1, 0, 720923, 1, 0, 720924, 1, 0, 720925, 1, 0, 720926, 1, 0, 720927, 1, 0, 720928, 1, 0, 720929, 1, 0, 720930, 1, 0, 720931, 1, 0, 720932, 1, 0, 720933, 1, 0, 720934, 1, 0, 720935, 1, 0, 720936, 1, 0, 720937, 1, 0, 720938, 1, 0, 720939, 1, 0, 851967, 1, 0, 786432, 1, 0, 786433, 1, 0, 786434, 1, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 1, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 786453, 1, 0, 786454, 1, 0, 786455, 1, 0, 786456, 1, 0, 786457, 1, 0, 786458, 1, 0, 786459, 1, 0, 786460, 1, 0, 786461, 1, 0, 786462, 1, 0, 786463, 1, 0, 786464, 1, 0, 786465, 1, 0, 786466, 1, 0, 786467, 1, 0, 786468, 1, 0, 786469, 1, 0, 786470, 1, 0, 786471, 1, 0, 786472, 1, 0, 786473, 1, 0, 786474, 1, 0, 786475, 1, 0, 917503, 1, 0, 851968, 1, 0, 851969, 1, 0, 851970, 1, 0, 851971, 1, 0, 851972, 1, 0, 851973, 1, 0, 851974, 1, 0, 851975, 1, 0, 851976, 1, 0, 851977, 1, 0, 851978, 1, 0, 851979, 1, 0, 851980, 1, 0, 851981, 1, 0, 851989, 1, 0, 851990, 1, 0, 851991, 1, 0, 851992, 1, 0, 851993, 1, 0, 851994, 1, 0, 851995, 1, 0, 851996, 1, 0, 851997, 1, 0, 851998, 1, 0, 851999, 1, 0, 852000, 1, 0, 852001, 1, 0, 852002, 1, 0, 852003, 1, 0, 852004, 1, 0, 852005, 1, 0, 852006, 1, 0, 852007, 1, 0, 852008, 1, 0, 852009, 1, 0, 852010, 1, 0, 852011, 1, 0, 917509, 1, 0, 917510, 1, 0, 917511, 1, 0, 917512, 1, 0, 917513, 1, 0 )
+
+[node name="ghabele_oboor" type="TileMap" parent="."]
+z_index = -3
+tile_set = ExtResource( 4 )
+collision_layer = 4
+collision_mask = 13
+format = 1
+tile_data = PoolIntArray( -196575, 0, 0, -196574, 0, 0, -196573, 0, 0, -196572, 0, 0, -196571, 0, 0, -131039, 1, 0, -131038, 1, 0, -131037, 1, 0, -131036, 1, 0, -131035, 1, 0, -65503, 1, 0, -65502, 1, 0, -65501, 1, 0, -65500, 1, 0, -65499, 1, 0, 33, 1, 0, 34, 1, 0, 35, 1, 0, 36, 1, 0, 37, 1, 0, 65569, 0, 0, 65570, 0, 0, 65571, 0, 0, 65572, 1, 0, 65573, 1, 0, 131105, 1, 0, 131106, 1, 0, 131107, 1, 0, 131108, 1, 0, 131109, 1, 0, 196641, 1, 0, 196642, 1, 0, 196643, 1, 0, 196644, 1, 0, 196645, 1, 0, 262177, 1, 0, 262178, 1, 0, 262179, 1, 0, 262180, 1, 0, 262181, 1, 0, 327713, 1, 0, 327714, 1, 0, 327715, 1, 0, 327716, 1, 0, 327717, 1, 0 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 2208.13, 84.818 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="KinematicBody2D2" type="KinematicBody2D" parent="."]
+position = Vector2( 2271.71, -172.301 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2"]
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="game_over_zone" type="Area2D" parent="."]
+position = Vector2( 3101.88, 945.841 )
+collision_layer = 16
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game_over_zone"]
+shape = SubResource( 3 )
+
+[node name="almas_folder" type="Node2D" parent="."]
+
+[node name="amlas" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 311, 101 )
+
+[node name="amlas4" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 365, 101 )
+
+[node name="amlas5" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 414, 101 )
+
+[node name="amlas6" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 468, 101 )
+
+[node name="amlas2" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 928, 236 )
+
+[node name="amlas3" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 877, 236 )
+
+[node name="amlas7" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 1026, 236 )
+
+[node name="amlas8" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 975, 236 )
+
+[node name="amlas9" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 2183, 43 )
+
+[node name="amlas10" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 2132, 43 )
+
+[node name="amlas11" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 2281, 43 )
+
+[node name="amlas12" parent="almas_folder" instance=ExtResource( 8 )]
+position = Vector2( 2230, 43 )
+
+[node name="mohit" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="mohit"]
+position = Vector2( 688, 352 )
+scale = Vector2( 1.07726, 1.07726 )
+z_index = -1
+texture = ExtResource( 11 )
+
+[node name="Sprite2" type="Sprite" parent="mohit"]
+position = Vector2( 1904, 288 )
+scale = Vector2( 1.07726, 1.07726 )
+texture = ExtResource( 11 )
+
+[node name="booteh" type="Sprite" parent="mohit"]
+position = Vector2( 97.2343, 418.173 )
+scale = Vector2( 0.568302, 0.568302 )
+texture = ExtResource( 9 )
+
+[node name="booteh2" type="Sprite" parent="mohit"]
+position = Vector2( 456.375, 101.844 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 9 )
+
+[node name="booteh3" type="Sprite" parent="mohit"]
+position = Vector2( 1079.52, 229.089 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 9 )
+
+[node name="booteh4" type="Sprite" parent="mohit"]
+position = Vector2( 784.596, 420.552 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 9 )
+
+[node name="derakht" type="Sprite" parent="mohit"]
+position = Vector2( 1419.63, 270.711 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 10 )
+
+[node name="derakht2" type="Sprite" parent="mohit"]
+position = Vector2( 1448.17, -169.295 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 10 )
+
+[node name="derakht3" type="Sprite" parent="mohit"]
+position = Vector2( 1012.92, -366.703 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 10 )
+
+[node name="derakht4" type="Sprite" parent="mohit"]
+position = Vector2( 2491.22, 267.332 )
+scale = Vector2( 0.568302, 0.568302 )
+z_index = -1
+texture = ExtResource( 10 )
+
+[node name="panel_namayesh" type="CanvasLayer" parent="."]
+script = ExtResource( 14 )
+
+[node name="Panel" type="Panel" parent="panel_namayesh"]
+modulate = Color( 0, 0, 0, 0.431373 )
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 357.0
+margin_bottom = 104.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="panel_namayesh"]
+margin_top = 16.0
+margin_right = 96.0
+margin_bottom = 112.0
+texture = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="x" type="Label" parent="panel_namayesh"]
+margin_left = 87.1591
+margin_top = 41.2728
+margin_right = 127.159
+margin_bottom = 85.2728
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.839216, 0.537255, 0.172549, 1 )
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="namayesh_almas" type="Label" parent="panel_namayesh"]
+margin_left = 124.159
+margin_top = 41.2728
+margin_right = 168.159
+margin_bottom = 85.2728
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.839216, 0.537255, 0.172549, 1 )
+text = "00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="forsatha" parent="panel_namayesh" instance=ExtResource( 16 )]
+margin_left = 176.663
+margin_top = 41.2728
+margin_right = 988.663
+margin_bottom = 241.273
+
+[node name="doshman_folder" type="Node2D" parent="."]
+
+[node name="ghoroor" parent="doshman_folder" instance=ExtResource( 15 )]
+position = Vector2( 362.352, 17.4253 )
+
+[node name="ghoroor2" parent="doshman_folder" instance=ExtResource( 15 )]
+position = Vector2( 533.212, 367.153 )
+
+[node name="ghoroor3" parent="doshman_folder" instance=ExtResource( 15 )]
+position = Vector2( 733.438, -198.819 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "level_background_music"
+anims/level_background_music = SubResource( 6 )
+
+[connection signal="timeout" from="zakat_player/zende_shodan" to="zakat_player" method="_on_zende_shodan_timeout"]
+[connection signal="body_entered" from="game_over_zone" to="zakat_player" method="_on_game_over_zone_body_entered"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/buttons/replay_pressed.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI_Background/game_over.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/buttons/replay_hover.png" type="Texture" id=3]
+[ext_resource path="res://Assets/buttons/replay_normal.png" type="Texture" id=4]
+[ext_resource path="res://game_over_menu.gd" type="Script" id=5]
+[ext_resource path="res://Assets/audio/game_over_bg.wav" type="AudioStream" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "background_game_over_music"
+length = 60.0
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[node name="game_over_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 384.0
+margin_top = 440.0
+margin_right = 680.0
+margin_bottom = 560.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "background_game_over_music"
+anims/background_game_over_music = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

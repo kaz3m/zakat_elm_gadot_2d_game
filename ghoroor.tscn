@@ -1,0 +1,102 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Assets/doshman_sprite/6_enemies_1_walk_004.png" type="Texture" id=1]
+[ext_resource path="res://Assets/doshman_sprite/6_enemies_1_walk_013.png" type="Texture" id=2]
+[ext_resource path="res://Assets/doshman_sprite/6_enemies_1_walk_019.png" type="Texture" id=3]
+[ext_resource path="res://Assets/doshman_sprite/6_enemies_1_walk_000.png" type="Texture" id=4]
+[ext_resource path="res://Assets/doshman_sprite/6_enemies_1_walk_016.png" type="Texture" id=5]
+[ext_resource path="res://Assets/doshman_sprite/6_enemies_1_walk_008.png" type="Texture" id=6]
+[ext_resource path="res://ghoroor.gd" type="Script" id=7]
+[ext_resource path="res://Assets/doshman_sprite_mordan/6_enemies_1_die_019.png" type="Texture" id=8]
+[ext_resource path="res://Assets/doshman_sprite_mordan/6_enemies_1_die_012.png" type="Texture" id=9]
+[ext_resource path="res://Assets/doshman_sprite_mordan/6_enemies_1_die_016.png" type="Texture" id=10]
+[ext_resource path="res://Assets/doshman_sprite_mordan/6_enemies_1_die_003.png" type="Texture" id=11]
+[ext_resource path="res://Assets/audio/impactMetal_heavy_004.ogg" type="AudioStream" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "rah_raftan",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "mordan",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 33.2775, 51.9872 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32.3578, 3.81649 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "mordane_doshman"
+length = 0.1
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 12 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 37.9985, 43.7104 )
+
+[node name="ghoroor" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource( 7 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "rah_raftan"
+frame = 5
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4.56377, 2.97638 )
+shape = SubResource( 2 )
+
+[node name="tashkhis_partgah" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 65 )
+collision_mask = 5
+
+[node name="morade_doshman" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="morade_doshman"]
+position = Vector2( -4.45549, -49.3883 )
+shape = SubResource( 3 )
+
+[node name="Timer_marge_doshman" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/mordane_doshman = SubResource( 4 )
+
+[node name="sadame_didan" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sadame_didan"]
+position = Vector2( -4.45952, -0.297302 )
+shape = SubResource( 5 )
+
+[connection signal="body_entered" from="morade_doshman" to="." method="_on_morade_doshman_body_entered"]
+[connection signal="timeout" from="Timer_marge_doshman" to="." method="_on_Timer_marge_doshman_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="sadame_didan" to="." method="_on_sadame_didan_body_entered"]

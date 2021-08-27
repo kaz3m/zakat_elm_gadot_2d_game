@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Player_Postions/player_idle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Player_Postions/player_walk1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player_Postions/player_jump.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player_Postions/player_walk2.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "sabet",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "davidan",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "paresh",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 23.4454
+height = 51.3295
+
+[node name="zakat_player" type="KinematicBody2D"]
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "sabet"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.707108, 5.65686 )
+shape = SubResource( 1 )
